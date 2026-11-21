@@ -1,0 +1,113 @@
+/* SCHOOL INFORMATION MARQUEE */
+.school-marquee {
+  width: min(100%, 750px);
+  overflow: hidden;
+  position: relative;
+  margin-top: 28px;
+  padding: 13px 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 38s linear infinite;
+  will-change: transform;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 25px;
+  padding-right: 25px;
+
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marquee-content > span:nth-child(even) {
+  color: var(--paper);
+  font-size: 15px;
+}
+
+.marquee-content a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.marquee-content a svg {
+  color: var(--paper);
+  font-size: 16px;
+}
+
+.marquee-content a:hover {
+  color: var(--paper);
+}
+
+/* Pause when the visitor hovers */
+.school-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .school-marquee {
+    width: 100%;
+    margin-top: 22px;
+    padding: 11px 0;
+  }
+
+  .marquee-content {
+    gap: 18px;
+    padding-right: 18px;
+    font-size: 10px;
+  }
+
+  .marquee-content a svg {
+    font-size: 14px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

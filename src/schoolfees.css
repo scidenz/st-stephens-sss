@@ -1,0 +1,168 @@
+/* SCHOOL FEES STRUCTURE */
+.fees-section {
+  margin-top: 65px;
+  padding: 55px 0;
+  border-top: 1px solid #deded9;
+}
+
+.fees-intro {
+  margin-bottom: 22px;
+}
+
+.fees-intro h3 {
+  font-family: Manrope, sans-serif;
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.fees-intro p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #777;
+}
+
+.fees-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.fees-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  text-align: left;
+}
+
+.fees-table th {
+  background: #111;
+  color: #fff;
+  padding: 17px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.fees-table td {
+  padding: 17px;
+  border-bottom: 1px solid #deded9;
+  font-size: 12px;
+  color: #555;
+}
+
+.fees-table .fees-level td {
+  background: #ecece8;
+  color: #111;
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.fees-note {
+  margin-top: 25px;
+  padding: 25px;
+  background: #ecece8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.fees-note p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #666;
+  max-width: 600px;
+}
+
+/* ADMISSIONS ENQUIRY FORM LAYOUT */
+.admission-enquiry-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 30px;
+}
+
+.admission-enquiry-form .form-full {
+  grid-column: 1 / -1;
+}
+
+.admission-enquiry-form label:not(.form-full) {
+  grid-column: auto;
+}
+
+/* ACADEMIC ENTRY - ADMISSIONS */
+.academic-entry {
+  margin-top: 65px;
+  padding-top: 35px;
+  border-top: 1px solid rgba(30, 42, 56, 0.15);
+}
+
+.academic-entry-heading {
+  margin-bottom: 25px;
+}
+
+.academic-entry-heading h3 {
+  margin-top: 8px;
+}
+
+.academic-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.academic-entry-card {
+  padding: 27px;
+  border: 1px solid rgba(30, 42, 56, 0.14);
+  background: #fff;
+}
+
+.academic-entry-card > span {
+  color: #6a4c93;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.academic-entry-card h4 {
+  margin: 12px 0;
+}
+
+.academic-entry-card p {
+  margin: 0;
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.academic-entry-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+}
+
+@media (max-width: 650px) {
+  .academic-entry {
+    margin-top: 45px;
+  }
+
+  .academic-entry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .admission-enquiry-form {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .admission-enquiry-form .form-full {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 650px) {
+  .fees-note {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
