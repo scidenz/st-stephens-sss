@@ -31,45 +31,85 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
-const schoolBanner = "/images/campus3.webp";
+// const schoolBanner = "/images/campus3.webp";
+
+// const bannerImages = [
+//   "/images/campus3.webp",
+//   "/images/campus1.webp",
+//   "/images/campus2.webp",
+//   "/images/campus4.webp",
+//   "/images/chariot.webp",
+//   "/images/student15.webp",
+//   "/images/black-stripes.webp",
+// ];
+
+// const img = {
+//   badge: "/images/badge.webp",
+//   campus1: "/images/campus1.webp",
+//   campus: "/images/campus.webp",
+//   class: "/images/student14.webp",
+//   library:
+//     "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=85",
+//   optional: "/images/optional.webp",
+//   science:
+//     "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=85",
+//   sports: "/images/basketball1.webp",
+//   students: "/images/student10.webp",
+//   students1: "/images/student11.webp",
+//   students6: "/images/student6.webp",
+//   student13: "/images/student13.webp",
+//   graduation:
+//     "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=85",
+//   art: "/images/student9.webp",
+//   contact: "/images/contact.webp",
+// };
+
+const BASE_URL = import.meta.env.BASE_URL;
+
+const pagePath = (filename = "") => `${BASE_URL}${filename}`;
+
+const imagePath = (filename) => `${BASE_URL}images/${filename}`;
+
+const schoolBanner = imagePath("campus3.webp");
 
 const bannerImages = [
-  "/images/campus3.webp",
-  "/images/campus1.webp",
-  "/images/campus2.webp",
-  "/images/campus4.webp",
-  "/images/chariot.webp",
-  "/images/student15.webp",
-  "/images/black-stripes.webp",
+  imagePath("campus3.webp"),
+  imagePath("campus1.webp"),
+  imagePath("campus2.webp"),
+  imagePath("campus4.webp"),
+  imagePath("chariot.webp"),
+  imagePath("student15.webp"),
+  imagePath("black-stripes.webp"),
 ];
 
 const img = {
-  badge: "/images/badge.webp",
-  campus1: "/images/campus1.webp",
-  campus: "/images/campus.webp",
-  class: "/images/student14.webp",
+  badge: imagePath("badge.webp"),
+  campus1: imagePath("campus1.webp"),
+  campus: imagePath("campus.webp"),
+  class: imagePath("student14.webp"),
   library:
     "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=85",
-  optional: "/images/optional.webp",
+  optional: imagePath("optional.webp"),
   science:
     "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=85",
-  sports: "/images/basketball1.webp",
-  students: "/images/student10.webp",
-  students1: "/images/student11.webp",
-  students6: "/images/student6.webp",
-  student13: "/images/student13.webp",
+  sports: imagePath("basketball1.webp"),
+  students: imagePath("student10.webp"),
+  students1: imagePath("student11.webp"),
+  students6: imagePath("student6.webp"),
+  student13: imagePath("student13.webp"),
   graduation:
     "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=85",
-  art: "/images/student9.webp",
-  contact: "/images/contact.webp",
+  art: imagePath("student9.webp"),
+  contact: imagePath("contact.webp"),
 };
+
 const nav = [
-  ["Home", "/"],
-  ["Our School", "/about.html"],
-  ["Academics", "/academics.html"],
-  ["School Life", "/school-life.html"],
-  ["Admissions", "/admissions.html"],
-  ["Contact", "/contact.html"],
+  ["Home", pagePath("")],
+  ["Our School", pagePath("about.html")],
+  ["Academics", pagePath("academics.html")],
+  ["School Life", pagePath("school-life.html")],
+  ["Admissions", pagePath("admissions.html")],
+  ["Contact", pagePath("contact.html")],
 ];
 
 function Header() {
@@ -77,7 +117,8 @@ function Header() {
   const [scrolled, setScrolled] = React.useState(false);
 
   const isHome =
-    location.pathname === "/" || location.pathname === "/index.html";
+    location.pathname === BASE_URL ||
+    location.pathname === `${BASE_URL}index.html`;
 
   React.useEffect(() => {
     if (!isHome) return;
@@ -96,10 +137,10 @@ function Header() {
     <header
       className={`topbar ${isHome ? "home-header" : ""} ${scrolled ? "scrolled" : ""}`}
     >
-      <a className="brand" href="/">
+      <a className="brand" href={pagePath("")}>
         <img
           className="brand-badge"
-          src="/images/stbadge.webp"
+          src={imagePath("stbadge.webp")}
           alt="St Stephen's Secondary School badge"
         />
         <span className="brand-name">
@@ -123,11 +164,11 @@ function Header() {
             onClick={() => setOpen(false)}
             className={
               (location.pathname === u ? "active " : "") +
-              (u === "/admissions.html" ? "nav-cta" : "")
+              (u === pagePath("admissions.html") ? "nav-cta" : "")
             }
           >
             {t}
-            {u === "/admissions.html" && <ArrowUpRight size={16} />}
+            {u === pagePath("admissions.html") && <ArrowUpRight size={16} />}
           </a>
         ))}
       </nav>
@@ -138,10 +179,10 @@ function Header() {
 function Footer() {
   return (
     <footer className="footer">
-      <a className="brand footer-brand" href="/">
+      <a className="brand footer-brand" href={pagePath("")}>
         <img
           className="brand-badge"
-          src="/images/badge.webp"
+          src={imagePath("badge.webp")}
           alt="St Stephen's Secondary School badge"
         />
         <span className="brand-name">
@@ -253,7 +294,7 @@ function Home() {
             </p>
 
             <div className="hero-actions">
-              <a href="/about.html" className="hero-home-button">
+              <a href={pagePath("about.html")} className="hero-home-button">
                 Learn More <ArrowUpRight size={19} />
               </a>
             </div>
@@ -325,8 +366,10 @@ function Home() {
             potential. Discover an education that prepares students for life.
           </p>
           <div className="hero-actions">
-            <Button href="/about.html">Discover our school</Button>
-            <a className="text-link" href="/academics.html">
+            <Button href={pagePath("academics.html")}>
+              Discover our school
+            </Button>
+            <a className="text-link" href={pagePath("academics.html")}>
               Explore academics ↗
             </a>
           </div>
@@ -389,7 +432,7 @@ function Home() {
       <section className="headteacher-section" data-reveal>
         <div className="headteacher-image">
           <img
-            src="/images/headteacher.webp"
+            src={imagePath("headteacher.webp")}
             alt="Headteacher of St Stephen's Secondary School"
             loading="lazy"
           />
@@ -450,7 +493,7 @@ function Home() {
               learning experiences help every student find their strengths and
               shape their future.
             </p>
-            <a className="underlined-link" href="/about.html">
+            <a className="underlined-link" href={pagePath("about.html")}>
               Get to know us <ArrowUpRight size={17} />
             </a>
           </div>
@@ -523,13 +566,15 @@ function Home() {
           ))}
         </div>
         <div className="center-action">
-          <Button href="/academics.html">Explore all academics</Button>
+          <Button href={pagePath("academics.html")}>
+            Explore all academics
+          </Button>
         </div>
       </section>
       <section className="identity-section" data-reveal>
         <div className="identity-photo">
           <img
-            src="/images/student15.webp"
+            src={imagePath("student15.webp")}
             alt="St Stephen's school church"
             loading="lazy"
           />
@@ -605,7 +650,9 @@ function Home() {
             From sports and creative clubs to leadership opportunities, students
             discover new interests and build lasting friendships.
           </p>
-          <Button href="/school-life.html">Explore school life</Button>
+          <Button href={pagePath("school-life.html")}>
+            Explore school life
+          </Button>
         </div>
       </section>
 
@@ -626,7 +673,7 @@ function Home() {
             We'd love to welcome your family. Contact us to learn about
             admissions, requirements, and school visits.
           </p>
-          <Button href="/admissions.html" light>
+          <Button href={pagePath("admissions.html")} light>
             Admissions information
           </Button>
         </div>
@@ -945,7 +992,7 @@ function Academics() {
               levels, and the current curriculum.
             </p>
           </div>
-          <Button href="/contact.html">Contact the school</Button>
+          <Button href={pagePath("contact.html")}>Contact the school</Button>
         </div>
       </section>
     </>
@@ -1039,7 +1086,7 @@ function SchoolLife() {
             Ask us about school activities, clubs, and opportunities for
             students to get involved.
           </p>
-          <Button href="/contact.html" light>
+          <Button href={pagePath("contact.html")} light>
             Get in touch
           </Button>
         </div>
@@ -1224,7 +1271,9 @@ function Admissions() {
               information regarding school fees, payment arrangements and other
               charges, please contact the school administration.
             </p>
-            <Button href="/contact.html">Enquire about school fees</Button>
+            <Button href={pagePath("contact.html")}>
+              Enquire about school fees
+            </Button>
           </div>
         </section>
       </section>

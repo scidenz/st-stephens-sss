@@ -17,7 +17,7 @@ export default function Preloader() {
         removeTimer = setTimeout(() => {
           setVisible(false);
         }, 500);
-      }, 1200);
+      }, 2200);
     };
 
     if (document.readyState === "complete") {
@@ -42,7 +42,7 @@ export default function Preloader() {
     >
       <div className="preloader-content">
         <img
-          src="/images/badge.webp"
+          src={`${import.meta.env.BASE_URL}images/badge.webp`}
           alt="St Stephen's Secondary School badge"
           className="preloader-badge"
         />
