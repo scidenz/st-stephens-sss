@@ -5,6 +5,7 @@ import {
   Menu,
   X,
   BookOpen,
+  Search,
   Users,
   Trophy,
   GraduationCap,
@@ -112,13 +113,59 @@ const nav = [
   ["Contact", pagePath("contact.html")],
 ];
 
+const searchItems = [
+  {
+    title: "Our School",
+    description: "School background, mission, vision and core values",
+    keywords: "history about mission vision values headteacher",
+    href: pagePath("about.html"),
+  },
+  {
+    title: "Academic Programmes",
+    description: "Sciences, Arts and academic subjects",
+    keywords:
+      "academics subjects sciences biology chemistry physics arts languages",
+    href: pagePath("academics.html"),
+  },
+  {
+    title: "School Life",
+    description: "Student activities, sports and co-curricular life",
+    keywords: "sports music clubs activities students school life",
+    href: pagePath("school-life.html"),
+  },
+  {
+    title: "Admissions",
+    description: "Entry requirements and how to apply",
+    keywords:
+      "admissions requirements application enrolment senior one senior five school fees closing date opening date",
+    href: pagePath("admissions.html"),
+  },
+  {
+    title: "Contact Us",
+    description: "School location and contact information",
+    keywords: "contact location address mukono phone email",
+    href: pagePath("contact.html"),
+  },
+];
+
 function Header() {
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
 
   const isHome =
     location.pathname === BASE_URL ||
     location.pathname === `${BASE_URL}index.html`;
+
+  const searchResults = searchQuery.trim()
+    ? searchItems
+        .filter((item) =>
+          `${item.title} ${item.description} ${item.keywords}`
+            .toLowerCase()
+            .includes(searchQuery.trim().toLowerCase()),
+        )
+        .slice(0, 5)
+    : [];
 
   React.useEffect(() => {
     if (!isHome) return;
@@ -152,6 +199,7 @@ function Header() {
         className="menu-toggle"
         onClick={() => setOpen(!open)}
         aria-label="Toggle navigation"
+        aria-expanded={open}
       >
         {open ? <X /> : <Menu />}
       </button>
@@ -172,6 +220,59 @@ function Header() {
           </a>
         ))}
       </nav>
+
+      <div className="site-search">
+        <form
+          className="site-search-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (searchResults.length > 0) {
+              window.location.href = searchResults[0].href;
+            }
+          }}
+        >
+          <Search size={17} aria-hidden="true" />
+          <input
+            type="search"
+            placeholder="Search the school website..."
+            aria-label="Search the school website"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              className="search-clear"
+              onClick={() => setSearchQuery("")}
+              aria-label="Clear search"
+            >
+              <X size={15} />
+            </button>
+          )}
+        </form>
+
+        {searchQuery.trim() && (
+          <div className="search-results">
+            {searchResults.length > 0 ? (
+              searchResults.map((item) => (
+                <a
+                  key={item.title}
+                  href={item.href}
+                  className="search-result"
+                  onClick={() => setSearchQuery("")}
+                >
+                  <strong>{item.title}</strong>
+                  <span>{item.description}</span>
+                </a>
+              ))
+            ) : (
+              <p className="search-no-results">
+                No matching school information found.
+              </p>
+            )}
+          </div>
+        )}
+      </div>
     </header>
   );
 }
